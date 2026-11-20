@@ -1,0 +1,171 @@
+/* =====================================================================================
+   BORDEAUX VELVET · visual identity layer (loaded last on every page)
+   Presentational only: type, light, texture, surfaces and motion. Structure, content and
+   layout come from the mirrored CSS untouched. Colour literals there are remapped at build
+   time by scripts/velvet.mjs. Classes prefixed .vv- are added at runtime by velvet.js.
+   ===================================================================================== */
+
+:root {
+  --vv-oxblood: #170A0E;
+  --vv-wine: #22101A;
+  --vv-bordeaux: #3A0D16;
+  --vv-claret: #9E3B4D;
+  --vv-claret-hi: #C8475E;
+  --vv-rose: #E0A896;
+  --vv-rose-hi: #F2C9B8;
+  --vv-blush: #F2DCD3;
+  --vv-cream: #F6EEE6;
+  --vv-line: rgba(242, 201, 184, .14);
+
+  --vv-rose-text: linear-gradient(100deg, #E0A896 0%, #F6D9C9 30%, #C98472 55%, #F2C9B8 80%, #E0A896 100%);
+  --vv-btn: linear-gradient(135deg, #F2C9B8 0%, #E0A896 45%, #C98472 100%);
+
+  --vv-serif: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --vv-sans: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+
+  --vv-luxe: cubic-bezier(.19, 1, .22, 1);
+  --vv-silk: cubic-bezier(.45, 0, .2, 1);
+}
+
+/* ---------- base ------------------------------------------------------------------- */
+html { background: var(--vv-oxblood); scrollbar-color: var(--vv-claret) var(--vv-oxblood); }
+body { font-family: var(--vv-sans); -webkit-font-smoothing: antialiased; font-weight: 350; }
+::selection { background: var(--vv-rose); color: var(--vv-oxblood); }
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: var(--vv-oxblood); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--vv-rose), var(--vv-claret)); border-radius: 9px; border: 2px solid var(--vv-oxblood); }
+:focus-visible { outline: 1px solid var(--vv-rose-hi) !important; outline-offset: 4px; }
+
+/* Couture serif display */
+h1, h2, h3, h4, .elementor-heading-title, .hwh-index-title, .hwh-pos-h, .hwh-leader-h,
+.hwh-bx-title, .hwh-ccard-title, .hwh-suite-title, .hwh-eng-name, .hwh-award-title, .hwh-belief-h {
+  font-family: var(--vv-serif) !important;
+}
+h1, h2, .hwh-index-title, .hwh-pos-h, .hwh-leader-h { font-weight: 500 !important; letter-spacing: -.01em !important; line-height: 1.02 !important; }
+h3, h4, .hwh-bx-title, .hwh-ccard-title, .hwh-suite-title, .hwh-eng-name, .hwh-award-title, .hwh-belief-h { font-weight: 600 !important; letter-spacing: 0 !important; font-size: 1.12em; }
+.hwh-pos-accent, h1 em, h2 em, .elementor-heading-title em, .hwh-hero-l2 .hwh-w > span {
+  font-style: italic !important; font-weight: 500 !important;
+  background: var(--vv-rose-text) !important; background-size: 240% 100% !important;
+  -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-text-fill-color: transparent !important; color: var(--vv-rose) !important;
+  animation: vv-shimmer 10s linear infinite;
+}
+.hwh-hero-l2 .hwh-w > span { animation: hwh-rise .9s var(--vv-luxe) both, vv-shimmer 10s linear infinite !important; }
+.ti, [class^="ti-"], [class*=" ti-"] { -webkit-text-fill-color: currentColor !important; }
+
+/* Spaced small-caps labels */
+.hwh-kicker, .hwh-pos-eyebrow, .hwh-trust-label, .hwh-partners-label, .hwh-suite-tag, .hwh-bx-n, .hwh-suite-phase,
+.hwh-award-years, .hwh-award-by, .hwh-ccard-client, .hwh-dir-link, .hwh-bx-link, .hwh-suite-link {
+  font-family: var(--vv-sans) !important; letter-spacing: .28em !important; text-transform: uppercase; font-weight: 400 !important;
+}
+.hwh-kicker::before, .hwh-kicker::after { content: '—'; margin: 0 .8em; color: var(--vv-claret-hi); letter-spacing: 0; }
+
+/* ---------- hero: drifting velvet ---------------------------------------------------- */
+.hwh-hero-mesh {
+  background:
+    radial-gradient(40% 55% at 22% 28%, rgba(158,59,77,.55), transparent 70%),
+    radial-gradient(45% 60% at 80% 18%, rgba(224,168,150,.22), transparent 70%),
+    radial-gradient(60% 70% at 50% 110%, rgba(200,71,94,.35), transparent 70%),
+    linear-gradient(180deg, #2a0f18 0%, #170A0E 100%) !important;
+  background-size: 160% 160%, 170% 170%, 150% 150%, 100% 100% !important;
+  animation: vv-drift 22s var(--vv-silk) infinite alternate;
+}
+.hwh-hero-mesh::after { /* velvet nap: fine noise */
+  content: ''; position: absolute; inset: 0; opacity: .16; mix-blend-mode: soft-light; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hwh-hero-mesh-in { opacity: .12 !important; }
+.hwh-hero-mesh-in, .hwh-hero-vid, .hwh-hero-net, canvas { filter: sepia(1) saturate(1.5) hue-rotate(-38deg) brightness(1.05); }
+.hwh-hero-veil { background: linear-gradient(180deg, transparent 0%, transparent 62%, rgba(23,10,14,.55) 85%, var(--vv-oxblood) 100%) !important; }
+.hwh-hero-fade { background: linear-gradient(180deg, transparent 0%, rgba(23,10,14,.6) 55%, var(--vv-oxblood) 100%) !important; }
+.hwh-hero-h1 { font-weight: 500 !important; letter-spacing: -.015em !important; line-height: .94 !important; }
+.hwh-hero-l1 .hwh-w > span { color: var(--vv-cream) !important; -webkit-text-fill-color: var(--vv-cream) !important; }
+.hwh-hero-lede em, .hwh-pos-sub em { color: var(--vv-rose-hi); font-style: italic; font-family: var(--vv-serif); font-size: 1.12em; }
+
+/* ---------- buttons: rose gold with liquid ripple ------------------------------------ */
+#hwnav .hw-btn--cta, #hwnav .hw-btn--cta:hover, a.cta, .hwh-cta, .hw-btn--cta, .hwf-cta, .hwh-work-cta, .elementor-button, .hs-button, input[type=submit] {
+  background: var(--vv-btn) !important; color: var(--vv-oxblood) !important; border-color: transparent !important;
+  box-shadow: 0 1px 0 rgba(255,240,232,.5) inset, 0 16px 36px -18px rgba(224,168,150,.75) !important;
+  transition: box-shadow .6s var(--vv-luxe), transform .6s var(--vv-luxe), color .4s !important; font-weight: 500 !important;
+}
+a.cta *, .hwh-cta *, .hw-btn--cta *, .hwf-cta *, .hwh-work-cta *, .elementor-button * { color: inherit !important; }
+a.cta:hover, .hwh-cta:hover, .hw-btn--cta:hover, .hwf-cta:hover, .hwh-work-cta:hover, .elementor-button:hover, .hs-button:hover {
+  color: var(--vv-cream) !important; transform: translateY(-2px);
+  box-shadow: 0 1px 0 rgba(255,240,232,.35) inset, 0 22px 48px -18px rgba(200,71,94,.9) !important;
+}
+.hw-btn--ghost, .hwh-textlink { border-color: rgba(242,201,184,.35) !important; color: var(--vv-blush) !important; }
+.hwh-soc-cta { color: var(--vv-rose) !important; }
+.vv-liquid { position: relative !important; overflow: hidden !important; isolation: isolate; }
+.vv-ripple {
+  position: absolute; left: var(--rx, 50%); top: var(--ry, 50%); width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+  background: radial-gradient(circle, #C8475E 0%, #9E3B4D 70%); z-index: -1; pointer-events: none;
+  transform: scale(0); transition: transform .75s var(--vv-luxe);
+}
+.vv-liquid:hover > .vv-ripple, .vv-liquid:focus-visible > .vv-ripple { transform: scale(var(--rs, 60)); }
+
+.hwh-dir-link, .hwh-bx-link, .hwh-suite-link { transition: color .4s, letter-spacing .7s var(--vv-luxe); }
+.hwh-dir-link:hover, .hwh-bx-link:hover, .hwh-suite-link:hover { color: var(--vv-rose-hi) !important; letter-spacing: .36em !important; }
+
+/* ---------- cards: velvet surfaces ------------------------------------------------------ */
+.vv-card { transition: transform .9s var(--vv-luxe), box-shadow .9s var(--vv-luxe), border-color .6s !important; }
+.vv-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(224,168,150,.4) !important;
+  box-shadow: 0 34px 70px -38px rgba(200,71,94,.55), 0 0 0 1px rgba(224,168,150,.18), inset 0 1px 0 rgba(242,201,184,.12) !important;
+}
+
+/* photography: warm rosé grade */
+.hwh-ccard-media img, .hwh-res img, .elementor-widget-image img {
+  filter: sepia(.25) saturate(.9) hue-rotate(-12deg) contrast(1.03);
+  transition: filter 1.2s var(--vv-luxe), transform 1.6s var(--vv-luxe) !important;
+}
+.hwh-ccard:hover .hwh-ccard-media img, .hwh-res a:hover img { filter: none; transform: scale(1.045); }
+.hwh-pos-media img { filter: sepia(1) saturate(2) hue-rotate(-40deg) brightness(1.1) !important; }
+.hwh-mavatar img, .hwh-mavatar { filter: sepia(.6) saturate(1.1) hue-rotate(-25deg); }
+
+/* ---------- section marquee labels ------------------------------------------------------- */
+.vv-host { isolation: isolate; }
+.vv-marquee {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1;
+  display: flex; align-items: center;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.vv-marquee > span {
+  display: inline-block !important; white-space: nowrap !important; padding: 0 0 0 4vw !important; margin: 0 !important;
+  font: italic 500 clamp(7rem, 17vw, 17rem)/1 var(--vv-serif) !important; text-transform: none !important;
+  color: transparent !important; -webkit-text-fill-color: transparent !important; background: none !important;
+  -webkit-text-stroke: 1px rgba(224,168,150,.13) !important; letter-spacing: -.01em !important; opacity: 1 !important;
+  animation: vv-marquee var(--vv-dur, 60s) linear infinite !important;
+}
+
+/* ---------- progress orb ------------------------------------------------------------------- */
+.vv-orb { position: fixed; right: 22px; bottom: 22px; width: 46px; height: 46px; z-index: 2147482950; pointer-events: none; opacity: 0; transition: opacity .6s; }
+.vv-orb.on { opacity: 1; }
+.vv-orb svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.vv-orb circle { fill: none; stroke-width: 1.5; }
+.vv-orb .t { stroke: rgba(242,201,184,.18); }
+.vv-orb .f { stroke: var(--vv-rose); stroke-linecap: round; stroke-dasharray: 126; stroke-dashoffset: calc(126 - 126 * var(--p, 0)); filter: drop-shadow(0 0 4px rgba(224,168,150,.6)); }
+.vv-orb b { position: absolute; inset: 0; display: grid; place-items: center; font: 400 10px/1 var(--vv-sans); letter-spacing: .08em; color: var(--vv-blush); }
+
+/* ---------- slow luxe reveals -------------------------------------------------------------- */
+.vv-js .vv-rv { opacity: 0; filter: blur(14px); transform: translateY(26px) scale(.975); }
+.vv-js .vv-rv.vv-in { opacity: 1; filter: blur(0); transform: none; transition: opacity 1.5s var(--vv-luxe) var(--d, 0s), filter 1.6s var(--vv-luxe) var(--d, 0s), transform 1.8s var(--vv-luxe) var(--d, 0s) !important; }
+.vv-js .vv-rv.vv-in.vv-card:hover { transform: translateY(-6px); transition: transform .9s var(--vv-luxe), box-shadow .9s var(--vv-luxe) !important; }
+.vv-js .vv-rv-m { overflow: hidden; }
+.vv-js .vv-rv-m img { transform: scale(1.16); opacity: 0; }
+.vv-js .vv-rv-m.vv-in img { transform: none; opacity: 1; transition: transform 2.2s var(--vv-luxe) var(--d, 0s), opacity 1.4s var(--vv-luxe) var(--d, 0s), filter 1.2s !important; }
+
+/* ---------- keyframes --------------------------------------------------------------------- */
+@keyframes vv-shimmer { to { background-position: -240% 0; } }
+@keyframes vv-drift { 0% { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; } 100% { background-position: 60% 40%, 30% 60%, 20% 40%, 0 0; } }
+@keyframes vv-marquee { from { transform: translate3d(0, var(--vv-par, 0px), 0); } to { transform: translate3d(-50%, var(--vv-par, 0px), 0); } }
+
+@media (max-width: 767px) { .vv-orb { right: 14px; bottom: 14px; width: 38px; height: 38px; } .vv-marquee > span { -webkit-text-stroke-width: .7px; } }
+@media (prefers-reduced-motion: reduce) {
+  .hwh-hero-mesh, .vv-marquee > span, .hwh-pos-accent, h1 em, h2 em, .hwh-hero-l2 .hwh-w > span { animation: none !important; }
+  .vv-js .vv-rv, .vv-js .vv-rv-m img { opacity: 1 !important; filter: none !important; transform: none !important; transition: none !important; }
+}
+
+/* lining figures so numbers stay full height in the serif */
+body, h1, h2, h3, h4, .elementor-heading-title, [class*="hwh-"] { font-variant-numeric: lining-nums; }
